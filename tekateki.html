@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintaks 1: Stimulasi - Puzzle Metamorfosis</title>
+    <style>
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        body {
+            height: 100vh; /* Kunci: Tinggi pas satu layar */
+            width: 100vw;
+            overflow: hidden; /* Kunci: Hilangkan scroll */
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .nav-header { 
+            width: 100%; 
+            padding: 1vh 2vw; /* Pakai vh/vw agar adaptif */
+            display: flex; gap: 10px; 
+            flex: 0 0 auto;
+        }
+
+        .btn-nav {
+            padding: 5px 15px; background: white; border-radius: 50px;
+            text-decoration: none; color: #2e7d32; font-weight: bold;
+            font-size: 0.8rem;
+            border: 2px solid #81c784; box-shadow: 0 3px 0 #81c784;
+        }
+
+        .page-title h1 { 
+            font-size: clamp(1.2rem, 4vh, 2rem); /* Font adaptif */
+            color: #1b5e20; 
+            margin: 5px 0; 
+            text-align: center;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        .dialog-box {
+            background: white; border-radius: 15px; padding: 8px 15px;
+            width: 90%; max-width: 600px; border: 2px solid #a8e063; 
+            margin-bottom: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .dialog-box p {
+            font-size: clamp(0.7rem, 2.2vh, 0.9rem);
+            line-height: 1.2;
+        }
+
+        /* Container Puzzle Adaptif */
+        #puzzle-container {
+            display: grid;
+            gap: 3px;
+            background: #80db80;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            border: 3px solid #fff;
+            /* Ukuran puzzle berdasarkan tinggi layar agar tidak luber ke bawah */
+            height: 45vh; 
+            width: 65vh; /* Proporsi 3:2 menyesuaikan gambar 600x400 */
+        }
+
+        .tile {
+            cursor: pointer;
+            border-radius: 4px;
+            transition: transform 0.1s;
+            border: 1px solid rgba(0,0,0,0.05);
+            background-repeat: no-repeat;
+        }
+
+        .tile:hover { transform: scale(1.02); z-index: 2; }
+        .selected { 
+            outline: 4px solid #ff9800;
+            outline-offset: -4px;
+            filter: brightness(1.1);
+        }
+
+        .button-group { 
+            display: flex; gap: 15px; 
+            margin-bottom: 10px;
+            flex: 0 0 auto;
+        }
+
+        .btn-action {
+            padding: 10px 25px; color: white; text-decoration: none;
+            font-size: 0.9rem; font-weight: bold; border-radius: 50px;
+            transition: 0.2s; border: none; cursor: pointer;
+            text-transform: uppercase;
+        }
+        .mulai { background: #4caf50; box-shadow: 0 4px 0 #2e7d32; }
+        .next { background: #ff9800; box-shadow: 0 4px 0 #e65100; }
+        .btn-action:active { transform: translateY(2px); box-shadow: none; }
+
+        /* Media Query khusus Landscape pendek */
+        @media (max-height: 500px) {
+            .page-title h1 { margin: 2px 0; }
+            #puzzle-container { height: 50vh; width: 75vh; }
+            .nav-header { padding: 5px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="datac.html" class="btn-nav">← Kembali</a>
+        <a href="index.html" class="btn-nav">🏠 Home</a>
+    </header>
+
+    <main style="display: flex; flex-direction: column; align-items: center; width: 100%; flex: 1;">
+        <div class="page-title">
+            <h1>Puzzle Metamorfosis 🦋</h1>
+        </div>
+
+        <div class="dialog-box">
+            <p id="hint-text">Klik dua kotak untuk menukar posisinya dan susun kembali gambarnya!</p>
+        </div>
+
+        <div id="puzzle-container"></div>
+
+        <div class="button-group">
+            <button onclick="shufflePuzzle()" class="btn-action mulai">Acak Gambar!</button>
+            <a href="cekjawaban.html" class="btn-action next">Selanjutnya ➔</a>
+        </div>
+    </main>
+
+    <script>
+        const container = document.getElementById('puzzle-container');
+        const imgUrl = 'rename.png'; 
+        const gridSize = 4;        
+        
+        let tiles = [];
+        let selectedTile = null;
+
+        function initPuzzle() {
+            container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+            container.innerHTML = ''; // Clear container
+            tiles = [];
+
+            for (let i = 0; i < gridSize * gridSize; i++) {
+                const tile = document.createElement('div');
+                tile.classList.add('tile');
+                tile.dataset.correctIndex = i; 
+                tile.dataset.currentIndex = i;
+                tile.style.backgroundImage = `url(${imgUrl})`;
+                
+                const row = Math.floor(i / gridSize);
+                const col = i % gridSize;
+                
+                const posX = (col * (100 / (gridSize - 1)));
+                const posY = (row * (100 / (gridSize - 1)));
+                
+                tile.style.backgroundSize = `${gridSize * 100}%`;
+                tile.style.backgroundPosition = `${posX}% ${posY}%`;
+                
+                tile.addEventListener('click', () => handleTileClick(tile));
+                tiles.push(tile);
+                container.appendChild(tile);
+            }
+        }
+
+        function handleTileClick(tile) {
+            if (!selectedTile) {
+                selectedTile = tile;
+                tile.classList.add('selected');
+            } else {
+                const tile1BG = selectedTile.style.backgroundPosition;
+                const tile1Idx = selectedTile.dataset.currentIndex;
+
+                selectedTile.style.backgroundPosition = tile.style.backgroundPosition;
+                selectedTile.dataset.currentIndex = tile.dataset.currentIndex;
+
+                tile.style.backgroundPosition = tile1BG;
+                tile.dataset.currentIndex = tile1Idx;
+
+                selectedTile.classList.remove('selected');
+                selectedTile = null;
+                checkWin();
+            }
+        }
+
+        function shufflePuzzle() {
+            for (let i = 0; i < 50; i++) {
+                const r1 = Math.floor(Math.random() * tiles.length);
+                const r2 = Math.floor(Math.random() * tiles.length);
+                
+                const tempPos = tiles[r1].style.backgroundPosition;
+                const tempIdx = tiles[r1].dataset.currentIndex;
+
+                tiles[r1].style.backgroundPosition = tiles[r2].style.backgroundPosition;
+                tiles[r1].dataset.currentIndex = tiles[r2].dataset.currentIndex;
+
+                tiles[r2].style.backgroundPosition = tempPos;
+                tiles[r2].dataset.currentIndex = tempIdx;
+            }
+            document.getElementById('hint-text').innerHTML = "<b>Teracak!</b> Silahkan susun kembali.";
+        }
+
+        function checkWin() {
+            const isWin = tiles.every(tile => tile.dataset.currentIndex == tile.dataset.correctIndex);
+            if (isWin) {
+                setTimeout(() => {
+                    alert('Luar Biasa, Detektif! Puzzle Selesai!');
+                    document.getElementById('hint-text').innerHTML = "<span style='color:green'><b>Selamat!</b> Kamu berhasil.</span>";
+                }, 300);
+            }
+        }
+
+        initPuzzle();
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Metamorfosis (MESIFOS)</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Segoe UI', sans-serif;
+    }
+
+    body{
+        background: linear-gradient(135deg, #b2ebf2, #80deea);
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
+
+    .container{
+        background:white;
+        width:95%;
+        max-width:900px;
+        padding:30px;
+        border-radius:25px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.15);
+        text-align:center;
+        animation:fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn{
+        from{
+            opacity:0;
+            transform:translateY(20px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+    h1{
+        color:#00796b;
+        font-size:32px;
+        margin-bottom:10px;
+    }
+
+    .subtitle{
+        color:#555;
+        margin-bottom:25px;
+        font-size:16px;
+    }
+
+    .video-box{
+        background:#f5f5f5;
+        border-radius:20px;
+        padding:20px;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    video{
+        width:100%;
+        border-radius:15px;
+        box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .status-bar{
+        margin-top:15px;
+        padding:12px;
+        background:#e0f2f1;
+        border-radius:12px;
+        color:#00695c;
+        font-size:15px;
+    }
+
+    .panduan{
+        margin-top:25px;
+        background:#fff8e1;
+        border-left:6px solid #ffb300;
+        padding:20px;
+        border-radius:15px;
+        text-align:left;
+    }
+
+    .panduan h3{
+        color:#ef6c00;
+        margin-bottom:12px;
+    }
+
+    .panduan ol{
+        padding-left:20px;
+        color:#555;
+        line-height:1.8;
+    }
+
+    .footer{
+        margin-top:25px;
+        font-size:14px;
+        color:#777;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🦋 Media Metamorfosis (MESIFOS)</h1>
+    <p class="subtitle">
+        Media Edukasi Interaktif Metamorfosis Kupu-Kupu
+    </p>
+
+    <div class="video-box">
+
+        <!-- Video Panduan -->
+        <video controls>
+            <source src="videoplayback.mp4" type="video/mp4">
+            Browser Anda tidak mendukung pemutaran video.
+        </video>
+
+        <div class="status-bar">
+            🎥 <b>Video Panduan Penggunaan Media Web Metamorfosis</b><br>
+            Oleh: <b>Nurlaila K</b>
+        </div>
+    </div>
+
+    <!-- Panduan Teks -->
+    <div class="panduan">
+        <h3>📖 Panduan Penggunaan Media</h3>
+        <ol>
+            <li>Tonton video panduan terlebih dahulu hingga selesai.</li>
+            <li>Perhatikan setiap langkah penggunaan media pembelajaran.</li>
+            <li>Gunakan menu yang tersedia untuk mempelajari metamorfosis kupu-kupu.</li>
+            <li>Bacalah materi dan kerjakan aktivitas atau kuis yang disediakan.</li>
+            <li>Jika mengalami kesulitan, mintalah bantuan guru atau pendamping.</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        © 2026 MESIFOS - Media Edukasi Metamorfosis
+    </div>
+
+</div>
+
+</body>
+</html>

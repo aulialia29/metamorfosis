@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintaks 4: Verifikasi Jawaban</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Recursive', sans-serif;
+        }
+
+        body {
+            height: 100vh; /* Kunci: Tinggi pas layar */
+            width: 100vw;
+            overflow: hidden; /* Kunci: Hilangkan scroll */
+            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
+                        url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Navigasi --- */
+        .nav-header {
+            width: 100%;
+            padding: 10px 20px; /* Diperkecil sedikit */
+            display: flex;
+            gap: 12px;
+            flex: 0 0 auto;
+        }
+
+        .btn-nav {
+            padding: 6px 15px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 0px #81c784;
+            border: 2px solid #81c784;
+        }
+
+        /* --- Konten Utama --- */
+        .content-wrapper {
+            flex: 1; /* Mengambil sisa ruang */
+            width: 95%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Konten di tengah secara vertikal */
+            padding-bottom: 10px;
+        }
+
+        .page-title h1 {
+            font-size: clamp(1.2rem, 4vh, 2rem); /* Font adaptif */
+            color: #1b5e20;
+            text-shadow: 2px 2px 0px white;
+            margin-bottom: 5px;
+        }
+
+        .dialog-box {
+            background: white;
+            border-radius: 15px;
+            padding: 8px 15px;
+            max-width: 600px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid #a8e063;
+        }
+
+        .dialog-box p {
+            font-size: clamp(0.8rem, 2.5vh, 1rem);
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        /* --- Tampilan Gambar Jawaban (Disesuaikan Landscape) --- */
+        .answer-container {
+            flex: 1; /* Biar membesar mengikuti sisa ruang */
+            width: 100%;
+            max-height: 50vh; /* Batasi tinggi gambar agar tidak luber */
+            background: swhite;
+            padding: 10px;
+            border-radius: 20px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .answer-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Gambar pas di dalam kotak tanpa terpotong */
+            border-radius: 10px;
+        }
+
+        /* --- Tombol Lanjut --- */
+        .btn-next {
+            flex: 0 0 auto;
+            display: inline-block;
+            padding: 10px 40px;
+            background: linear-gradient(45deg, #ff9800, #ffb74d);
+            color: white;
+            text-decoration: none;
+            font-size: clamp(1rem, 3vh, 1.2rem);
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 4px 0 #e65100;
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .btn-next:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #e65100;
+        }
+
+        /* Media Query Khusus Landscape Super Pendek */
+        @media (max-height: 450px) {
+            .page-title h1 { display: none; } /* Sembunyikan judul jika layar terlalu pendek */
+            .dialog-box { padding: 5px; margin-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="tekateki.html" class="btn-nav">← Kembali ke Game</a>
+        <a href="index.html" class="btn-nav">🏠 Home</a>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="page-title">
+            <h1>Verifikasi ✨</h1>
+        </div>
+
+        <div class="dialog-box">
+            <p>Cocokkan jawabanmu dengan kunci jawaban di bawah ini!</p>
+        </div>
+
+        <div class="answer-container">
+            <img src="rename.png" alt="Kunci Jawaban Metamorfosis">
+        </div>
+
+        <a href="generalisasi.html" class="btn-next">Kesimpulan ➔</a>
+    </main>
+
+</body>
+</html>

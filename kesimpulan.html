@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintaks 5: Kesimpulan</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Recursive', sans-serif;
+        }
+
+        body {
+            height: 100vh; /* Tinggi pas satu layar */
+            width: 100vw;
+            overflow: hidden; /* Hilangkan scroll */
+            background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), 
+                        url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        /* --- Navigasi --- */
+        .nav-header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            flex: 0 0 auto;
+        }
+
+        .btn-nav {
+            padding: 5px 15px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 0px #a5d6a7;
+            border: 2px solid #a5d6a7;
+        }
+
+        /* --- Judul Kesimpulan --- */
+        .header-section {
+            text-align: center;
+            flex: 0 0 auto;
+            margin-bottom: 5px;
+        }
+
+        .header-section h1 {
+            font-size: clamp(1.2rem, 4vh, 2rem);
+            color: #1b5e20;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        .badge-kesimpulan {
+            background: #ffeb3b;
+            padding: 4px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 2px solid #fbc02d;
+            display: inline-block;
+            transform: rotate(-1deg);
+        }
+
+        /* --- Grid Kesimpulan (3 Kolom ke Samping) --- */
+        .conclusion-list {
+            flex: 1; /* Ambil sisa ruang tengah */
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Kolom sejajar */
+            gap: 15px;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        /* --- Kartu Kesimpulan --- */
+        .conclusion-card {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            height: 100%; /* Kartu sama tinggi */
+            display: flex;
+            flex-direction: column; /* Gambar di atas, teks di bawah */
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            text-align: justify;
+        }
+
+        .card-1 { border: 3px solid #81c784; }
+        .card-2 { border: 3px solid #4fc3f7; }
+        .card-3 { border: 3px solid #ff8a65; }
+
+        .card-image {
+            width: 180px; /* Ukuran gambar diperkecil agar pas */
+            height: 180px;
+            margin-bottom: 10px;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-text h3 {
+            color: #1b5e20;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .card-text p {
+            color: #4e342e;
+            font-size: 0.8rem;
+            line-height: 1.3;
+        }
+
+        /* --- Tombol Akhir --- */
+        .footer-section {
+            flex: 0 0 auto;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 10px 40px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 5px 0 #1b4d3e;
+            transition: 0.2s;
+        }
+
+        .btn-home:hover {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #1b4d3e;
+        }
+
+        .star {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 1rem;
+        }
+
+        /* Responsif untuk layar sangat pendek */
+        @media (max-height: 450px) {
+            .card-image { width: 50px; height: 50px; }
+            .card-text p { font-size: 0.7rem; }
+            .header-section h1 { font-size: 1.2rem; }
+            .badge-kesimpulan { display: none; } /* Sembunyikan badge jika terlalu sempit */
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="nav-header">
+    <a href="verification.html" class="btn-nav">← Kembali</a>
+</header>
+
+<div class="header-section">
+    <h1>KESIMPULAN 📖</h1>
+    <div class="badge-kesimpulan">Rangkuman Materi</div>
+</div>
+
+<main class="conclusion-list">
+
+    <div class="conclusion-card card-1">
+        <span class="star">⭐</span>
+        <div class="card-image"><img src="daurhidup.png" alt="Siklus"></div>
+        <div class="card-text">
+            <h3>Siklus Hidup</h3>
+            <p>Semua hewan punya siklus diantaranya lahir, tumbuh, dan berkembang dari telur hingga dewasa.</p>
+        </div>
+    </div>
+
+    <div class="conclusion-card card-2">
+        <span class="star">🌟</span>
+        <div class="card-image"><img src="daurhidup2.png" alt="Metamorfosis"></div>
+        <div class="card-text">
+            <h3>Apa itu Metamorfosis?</h3>
+            <p>Perubahan bentuk tubuh hewan. Ada 2 jenis yaitu <b>Sempurna</b> & <b>Tidak Sempurna</b>.</p>
+        </div>
+    </div>
+
+    <div class="conclusion-card card-3">
+        <span class="star">✨</span>
+        <div class="card-image"><img src="daurhidup.png" alt="Sempurna"></div>
+        <div class="card-text">
+            <h3>Metamorfosis Sempurna</h3>
+            <p>Fasenya: Telur → Larva (Ulat) → Pupa (Kepompong) → Imago (Kupu-kupu).</p>
+        </div>
+    </div>
+
+</main>
+
+<div class="footer-section">
+    <a href="index.html" class="btn-home">SELESAI 🏠</a>
+</div>
+
+</body>
+</html>

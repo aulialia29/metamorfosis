@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintaks: Data Processing - Laboratorium Detektif</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Recursive', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), 
+                        url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Mencegah scroll jika layar landscape pas */
+        }
+
+        /* --- Navigasi --- */
+        .nav-header {
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-nav {
+            padding: 6px 15px;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border: 2px solid #81c784;
+            box-shadow: 0 3px 0 #81c784;
+        }
+
+        /* --- Container Utama --- */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px 15px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-y: auto; /* Scroll muncul hanya jika konten benar-benar meluap */
+        }
+
+        .header-box {
+            text-align: center;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-box h1 {
+            font-size: clamp(1.2rem, 3vh, 1.8rem);
+            color: #1b5e20;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        /* --- Layout Grid Landscape --- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 15px;
+            width: 100%;
+            flex: 1; /* Membuat grid mengambil sisa ruang */
+            min-height: 0; /* Penting untuk flex-child agar bisa shrink/grow */
+        }
+
+        /* --- Case Study Box --- */
+        .case-study-card {
+            background: #fff9c4;
+            border-radius: 20px;
+            padding: 15px;
+            border: 3px dashed #fbc02d;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-study-card h3 {
+            color: #e65100;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .case-study-card p {
+            font-size: 0.95rem;
+            color: #4e342e;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* --- DATA PROCESSING AREA --- */
+        .processing-container {
+            background: white;
+            border-radius: 25px;
+            padding: 15px;
+            border: 3px solid #81c784;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .diagram-blank {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #f1f8e9;
+            border-radius: 15px;
+            flex-shrink: 0;
+        }
+
+        .diagram-step {
+            flex: 1;
+            height: 50px;
+            border: 2px dashed #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            font-size: 0.7rem;
+            text-align: center;
+            color: #2e7d32;
+            padding: 2px;
+        }
+
+        .arrow { font-size: 1rem; color: #2e7d32; }
+
+        /* --- Input Jawaban (Otomatis Full Ke Bawah) --- */
+        .analysis-input {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        label {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        textarea {
+            width: 100%;
+            flex: 1; /* Mengisi sisa ruang di dalam processing-container */
+            padding: 12px;
+            border-radius: 15px;
+            border: 2px solid #a5d6a7;
+            font-size: 0.95rem;
+            resize: none;
+            background: #fafafa;
+        }
+
+        /* --- Tombol Bawah --- */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-action {
+            padding: 10px 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .simpan { background: #4caf50; box-shadow: 0 4px 0 #2e7d32; }
+        .next { background: #ff9800; box-shadow: 0 4px 0 #e65100; }
+        .btn-action:active { transform: translateY(2px); box-shadow: none; }
+
+        @media (max-width: 850px) or (orientation: portrait) {
+            body { height: auto; overflow: auto; }
+            .main-grid { grid-template-columns: 1fr; }
+            textarea { height: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="m-sempurna.html" class="btn-nav">← Kembali</a>
+        <a href="index.html" class="btn-nav">🏠 Home</a>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="header-box">
+            <h1>Pengolahan Data 🧪</h1>
+            <p>Ayo anak anak, olah data yang kamu temukan untuk memecahkan kasus ini!</p>
+        </div>
+
+        <div class="main-grid">
+            <div class="case-study-card">
+                <h3><span>🕵️‍♂️</span>LKPD: STUDI KASUS</h3>
+                <p>"Jika sebuah lingkungan tercemar limbah cair yang membunuh semua <b>Larva</b> nyamuk, apa dampaknya bagi populasi nyamuk dewasa dalam 2 minggu ke depan? Jelaskan berdasarkan siklus hidupnya."</p>
+            </div>
+
+            <section class="processing-container">
+                <label>Alat Bantu: Alur Siklus Hidup Nyamuk</label>
+                <div class="diagram-blank">
+                    <div class="diagram-step">Telur</div>
+                    <div class="arrow">→</div>
+                    <div class="diagram-step" style="background: #ffcdd2; border-style: solid; border-color: #f44336;">Larva</div>
+                    <div class="arrow">→</div>
+                    <div class="diagram-step">Pupa</div>
+                    <div class="arrow">→</div>
+                    <div class="diagram-step">Nyamuk Dewasa</div>
+                </div>
+
+                <div class="analysis-input">
+                    <label for="jawaban">Tuliskan Hasil Analisismu:</label>
+                    <textarea id="jawaban" placeholder="Ketik penjelasanmu di sini..."></textarea>
+                </div>
+            </section>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-action simpan" onclick="alert('Data berhasil disimpan ke jurnal detektif!')">Simpan</button>
+            <a href="Verification.html" class="btn-action next">Verifikasi ➔</a>
+        </div>
+    </main>
+
+</body>
+</html>

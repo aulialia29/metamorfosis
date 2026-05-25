@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MESIFOS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Fredoka', sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+/* BACKGROUND */
+background:url("background.jpeg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+/* JUDUL */
+.header{
+font-size:72px;
+font-weight:600;
+color:#f8f7fa;
+margin-bottom:40px;
+
+/* supaya jelas di wallpaper */
+text-shadow:
+2px 2px 6px rgba(0,0,0,0.4),
+0px 0px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* MENU CONTAINER */
+.menu-container{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+/* MENU BOX */
+.menu-box{
+width:170px;
+height:150px;
+background:white;
+border-radius:25px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-decoration:none;
+color:#2d6a4f;
+font-size:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+transition:0.3s;
+cursor:pointer;
+}
+
+/* ICON */
+.menu-box span{
+font-size:45px;
+margin-bottom:8px;
+}
+
+/* HOVER */
+.menu-box:hover{
+transform:translateY(-12px) scale(1.07);
+background:#95d5b2;
+color:white;
+}
+
+/* ICON BOUNCE */
+.menu-box:hover span{
+animation:bounce 0.5s;
+}
+
+@keyframes bounce{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+}
+
+/* ANIMASI MASUK */
+.menu-box{
+animation:fadeIn 0.7s ease forwards;
+opacity:0;
+}
+
+.menu-box:nth-child(1){animation-delay:0.1s;}
+.menu-box:nth-child(2){animation-delay:0.2s;}
+.menu-box:nth-child(3){animation-delay:0.3s;}
+.menu-box:nth-child(4){animation-delay:0.4s;}
+.menu-box:nth-child(5){animation-delay:0.5s;}
+
+@keyframes fadeIn{
+from{
+transform:translateY(40px);
+opacity:0;
+}
+to{
+transform:translateY(0);
+opacity:1;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO -->
+<audio id="bgSound" autoplay loop>
+<source src="metamorfosis.mp3" type="audio/mpeg">
+</audio>
+
+<div class="header">
+🌿 Media Website Metamorfosis (MESIFOS) 🐛
+</div>
+
+<div class="menu-container">
+
+<a href="cptp.html" class="menu-box">
+<span>🦋</span>
+CP & TP
+</a>
+
+<a href="panduan.html" class="menu-box">
+<span>📖</span>
+Panduan
+</a>
+
+<a href="belajar.html" class="menu-box">
+<span>🐛</span>
+Mesifos
+</a>
+
+<a href="aboutus.html" class="menu-box">
+<span>👩‍🏫</span>
+Tentang Kami
+</a>
+
+</div>
+
+<script>
+
+// efek klik menu
+document.querySelectorAll(".menu-box").forEach(box=>{
+box.addEventListener("click",function(){
+this.style.transform="scale(0.9)";
+setTimeout(()=>{
+this.style.transform="";
+},150);
+});
+});
+
+// AUTOPLAY SOUND
+window.addEventListener("load", function(){
+let audio = document.getElementById("bgSound");
+audio.volume = 0.5;
+
+audio.play().catch(function(){
+document.body.addEventListener("click", function(){
+audio.play();
+}, { once:true });
+});
+
+});
+
+</script>
+
+</body>
+</html>s

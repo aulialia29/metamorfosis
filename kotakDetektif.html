@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sintaks 2: Problem Statement</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        linear-gradient(rgba(255,255,255,0.25),
+        rgba(255,255,255,0.25)),
+        url('background 1.jpeg') center/cover no-repeat fixed;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* ===== NAVBAR ===== */
+.nav-header{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 35px;
+}
+
+.nav-left{
+    display:flex;
+    gap:12px;
+}
+
+.btn-nav{
+    padding:10px 22px;
+    border-radius:50px;
+    text-decoration:none;
+    background:rgba(255,255,255,0.9);
+    color:#2e7d32;
+    font-weight:700;
+    font-size:.95rem;
+    border:2px solid transparent;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+    transition:.3s;
+}
+
+.btn-nav:hover{
+    transform:translateY(-3px);
+    border-color:#81c784;
+    background:white;
+}
+
+/* ===== CONTENT ===== */
+.content-wrapper{
+    flex:1;
+    width:90%;
+    max-width:900px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+/* Card utama */
+.main-card{
+    width:100%;
+    background:rgba(255,255,255,0.28);
+    backdrop-filter:blur(10px);
+    border-radius:35px;
+    padding:45px 30px;
+    box-shadow:0 12px 35px rgba(0,0,0,.15);
+    border:1px solid rgba(255,255,255,.35);
+    animation:fadeUp .7s ease;
+}
+
+/* ===== JUDUL ===== */
+.page-title h1{
+    font-size:clamp(2rem,5vw,3rem);
+    color:#1b5e20;
+    margin-bottom:8px;
+    text-shadow:2px 2px 6px rgba(255,255,255,.7);
+}
+
+.page-title p{
+    font-size:1.1rem;
+    color:#2e7d32;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+/* ===== DIALOG ===== */
+.dialog-box{
+    position:relative;
+    background:white;
+    border-radius:28px;
+    padding:28px;
+    max-width:650px;
+    margin:auto;
+    margin-bottom:35px;
+    border:4px solid #9ccc65;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.dialog-box::after{
+    content:'';
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+    transform:translateX(-50%);
+    border-width:18px 18px 0;
+    border-style:solid;
+    border-color:white transparent transparent;
+}
+
+.dialog-box p{
+    color:#2e5d20;
+    font-size:clamp(1rem,2.5vw,1.15rem);
+    line-height:1.8;
+    font-weight:500;
+}
+
+/* ===== BUTTON ===== */
+.button-group{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:18px;
+}
+
+.btn-action{
+    text-decoration:none;
+    padding:15px 30px;
+    min-width:240px;
+    border-radius:50px;
+    font-size:1rem;
+    font-weight:700;
+    letter-spacing:.5px;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.btn-discuss{
+    background:linear-gradient(135deg,#66bb6a,#43a047);
+    color:white;
+}
+
+.btn-next{
+    background:linear-gradient(135deg,#2e7d32,#1b5e20);
+    color:white;
+}
+
+.btn-action:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 12px 28px rgba(0,0,0,.22);
+    filter:brightness(1.05);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+
+    .nav-header{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .button-group{
+        flex-direction:column;
+    }
+
+    .btn-action{
+        width:100%;
+    }
+
+    .main-card{
+        padding:35px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav-header">
+    <div class="nav-left">
+        <a href="m-sempurna.html" class="btn-nav">← Kembali</a>
+        <a href="index.html" class="btn-nav">🏠 Home</a>
+    </div>
+</header>
+
+<main class="content-wrapper">
+
+    <div class="main-card">
+
+        <div class="page-title">
+            <h1>🔍 Identifikasi Masalah</h1>
+            <p>Ayo kita mulai berdiskusi bersama!</p>
+        </div>
+
+        <div class="dialog-box">
+            <p>
+                Baik anak-anak, setelah mengamati video, mari kita tuliskan 
+                rumusan masalah yang kalian temukan dalam video tersebut!
+            </p>
+        </div>
+
+        <div class="button-group">
+            <a href="diskusi.html" class="btn-action btn-discuss">
+                💬 Diskusi
+            </a>
+
+            <a href="LaboratoriumVirtual.html" class="btn-action btn-next">
+                Selanjutnya ➜
+            </a>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

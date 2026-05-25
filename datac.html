@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax 3: Pengumpulan Data - Metamorfosis</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Recursive', sans-serif;
+        }
+
+        body {
+            /* Agar background tetap penuh tapi konten bisa discroll di dalam jika perlu */
+            height: 100vh;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), 
+                        url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 10px; /* Padding dikurangi */
+        }
+
+        /* --- Navigasi --- */
+        .nav-header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+            margin-bottom: 10px; /* Dikurangi */
+        }
+
+        .btn-nav {
+            padding: 6px 15px; /* Lebih ramping */
+            background: #ffffff;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 0.85rem;
+            box-shadow: 0 3px 0px #a5d6a7;
+            transition: 0.2s;
+            border: 2px solid #a5d6a7;
+        }
+
+        /* --- Judul Atas --- */
+        .header-section {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .header-section h1 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem); /* Diperkecil sedikit */
+            color: #1b5e20;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        /* --- Banner Instruksi --- */
+        .instruction-banner {
+            background: #f1f8e9;
+            border-radius: 15px;
+            padding: 10px 20px; /* Dipersempit */
+            width: 95%;
+            max-width: 900px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            text-align: center;
+            border: 3px dashed #81c784;
+        }
+
+        .instruction-banner p {
+            font-size: 0.95rem; /* Ukuran teks dikurangi */
+            color: #4e342e;
+            line-height: 1.4;
+        }
+
+        /* --- Grid Kartu --- */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px; /* Jarak antar kartu dirapatkan */
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 15px;
+            /* Memungkinkan scroll internal jika layar sangat pendek */
+            overflow-y: auto; 
+            padding: 5px;
+        }
+
+        /* --- Style Kartu --- */
+        .data-card {
+            background: white;
+            border-radius: 20px;
+            padding: 12px; /* Dikurangi */
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 6px 0px #c8e6c9;
+            border: 2px solid #a5d6a7;
+            transition: 0.2s;
+        }
+
+        /* Ukuran Gambar Disuaikan */
+        .card-image {
+            width: 80px; /* Diperkecil agar pas di landscape */
+            height: 80px;
+            flex-shrink: 0;
+            background: #f1f8e9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 85%;
+            object-fit: contain;
+        }
+
+        .card-text h3 {
+            color: #2e7d32;
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+
+        .card-text p {
+            font-size: 0.85rem;
+            color: #5d4037;
+            line-height: 1.3;
+        }
+
+        /* --- Footer --- */
+        .footer-section {
+            text-align: justify;
+            margin-top: auto; /* Mendorong ke bawah */
+            padding-bottom: 10px;
+        }
+
+        .btn-finish {
+            display: inline-block;
+            padding: 12px 40px;
+            background: linear-gradient(135deg, #ff9800, #f44336);
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 4px 0 #bf360c;
+            transition: 0.2s;
+        }
+
+        /* KHUSUS LANDSCAPE HP */
+        @media (max-height: 500px) {
+            body { padding: 5px; }
+            .header-section h1 { font-size: 1.2rem; }
+            .instruction-banner { padding: 5px; margin-bottom: 10px; }
+            .instruction-banner p { font-size: 0.8rem; }
+            .card-image { width: 60px; height: 60px; }
+            .data-grid { gap: 10px; }
+            .btn-finish { padding: 8px 30px; font-size: 0.9rem; }
+        }
+
+        /* Responsif HP Potrait */
+        @media (max-width: 600px) {
+            .data-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="nav-header">
+    <a href="problemstatement.html" class="btn-nav">← Kembali</a>
+    <a href="index.html" class="btn-nav">🏠 Home</a>
+</header>
+
+<div class="header-section">
+    <h1>Pengumpulan Data 🌸</h1>
+</div>
+
+<div class="instruction-banner">
+    <p> Halo anak anak mari mengumpulkan data data di bawah ini untuk menemukan penyelesaian masalah yang kalian temukan</p>
+</div>
+
+<main class="data-grid">
+    <div class="data-card">
+        <div class="card-image"><img src="daurhidup.png" alt="Siklus"></div>
+        <div class="card-text">
+            <h3>Siklus Hidup</h3>
+            <p>Makhluk hidup butuh berkembang biak untuk mempertahankan keturunan atau jenisnya di Bumi. Maksudnya berkembang biak adalah menghasilkan keturunannya. Siklus hidup merupakan tahapan kehidupan yang dialami makhluk hidup sejak lahir.</p>
+        </div>
+    </div>
+
+    <div class="data-card">
+        <div class="card-image"><img src="daurhidup2.png" alt="Metamorfosis"></div>
+        <div class="card-text">
+            <h3>Apa itu Metamorfosis?</h3>
+            <p> Metamorfosis adalah perubahan bentuk pada siklus hidup makhluk hidup. Metamorfosis bisa dibedakan menjadi 2 jenis yaitu metamorfosis sempurna dan metamorfosis tidak sempurna</b>.</p>
+        </div>
+    </div>
+
+    <div class="data-card">
+        <div class="card-image"><img src="daurhidup.png" alt="Sempurna"></div>
+        <div class="card-text">
+            <h3>Metamorfosis Tidak Sempurna</h3>
+            <p>Pada metamorfosis tidak sempurna, hewan mengalami 3 fase pertumbuhan. Contoh metamorfosis tidak sempurna terjadi pada belalang dengan urutan fasenya telur, nimfa dan imago atau belalang dewasa </p>
+        </div>
+    </div>
+
+    <div class="data-card">
+        <div class="card-image"><img src="buku.jpeg" alt="Kata Kunci"></div>
+        <div class="card-text">
+            <h3>Kata Kunci </h3>
+            <p>Hampir semua serangga mengalami metamorfosis. Namun, ada juga hewan-hewan selain serangga yang mengalami metamorfosis, contohnya katak. </p>
+        </div>
+    </div>
+</main>
+
+<div class="footer-section">
+    <a href="tekateki.html" class="btn-finish">Selanjutnya ▶</a>
+</div>
+
+</body>
+</html>s

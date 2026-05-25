@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metamorfosis - Halaman Utama</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body full screen */
+body, html{
+    height:100%;
+    overflow:hidden;
+}
+
+/* Background gambar */
+.bg-image{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url("background 1.jpeg") no-repeat center center;
+    background-size:cover;
+    z-index:-2;
+}
+
+/* Overlay gelap */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:-1;
+}
+
+/* Logo kanan atas */
+.logo-container{
+    position:absolute;
+    top: 50px;
+    right: 60px;
+    z-index:10;
+}
+
+.logo-container img{
+    width: 150px;
+    height:auto;
+    filter:drop-shadow(0 0 10px rgba(255,255,255,0.5));
+}
+
+/* Konten tengah */
+.main-content{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+    color:rgb(146, 235, 146);
+    padding:0 20px;
+}
+
+.text-box{
+    max-width:700px;
+}
+
+.text-box h1{
+    font-size:4rem;
+    margin-bottom:15px;
+    color:#a8e063;
+    text-shadow:2px 2px 15px rgba(0,0,0,0.7);
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.text-box p{
+    font-size:1.2rem;
+    margin-bottom:40px;
+    line-height:1.6;
+}
+
+/* Tombol */
+.btn-start{
+    display:inline-block;
+    padding:18px 50px;
+    background:linear-gradient(45deg,#56ab2f,#a8e063);
+    color:rgb(211, 245, 172);
+    text-decoration:none;
+    font-size:1.5rem;
+    font-weight:bold;
+    border-radius:50px;
+    transition:0.3s;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+.btn-start:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 8px 25px rgba(168,224,99,0.5);
+    color:#1b4d00;
+}
+
+/* Responsive HP */
+@media (max-width:768px){
+    .logo-container img{
+        width:60px;
+    }
+    .text-box h1{
+        font-size:2.5rem;
+    }
+    .text-box p{
+        font-size:1rem;
+    }
+    .btn-start{
+        padding:12px 30px;
+        font-size:1.2rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background -->
+<div class="bg-image"></div>
+
+<!-- Overlay -->
+<div class="overlay"></div>
+
+<!-- Logo -->
+<div class="logo-container">
+    <img src="LOGO.png" alt="Logo Metamorfosis">
+</div>
+
+<!-- Konten -->
+<div class="main-content">
+    <div class="text-box">
+        <h1>METAMORFOSIS</h1>
+        <p>Media Website Metamorfosis (MESIFOS).</p>
+        <a href="home.html" class="btn-start">START</a>
+    </div>
+</div>
+
+</body>
+</html>

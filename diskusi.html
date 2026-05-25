@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pojok Diskusi Seru! 🌿</title>
+    <style>
+        /* Menggunakan font yang ramah anak dan warna latar belakang hijau muda */
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Trebuchet MS', sans-serif;
+            background-color: #9cf1a4;
+            color: #2E7D32;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Wadah utama dengan efek melengkung yang lucu */
+        .container {
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 600px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 0 #C8E6C9;
+            border: 3px solid #81C784;
+        }
+
+        /* Judul halaman dengan ikon tumbuhan */
+        h2 {
+            text-align: center;
+            color: #2E7D32;
+            font-size: 28px;
+            margin-top: 0;
+            text-shadow: 1px 1px 0px #A5D6A7;
+        }
+
+        /* Gaya untuk label form */
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Gaya untuk input nama dan isi cerita */
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 3px solid #A5D6A7;
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #1B5E20;
+            background-color: #F1F8E9;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        /* Efek saat kolom di-klik */
+        input[type="text"]:focus, textarea:focus {
+            border-color: #4CAF50;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 8px #A5D6A7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Tombol kirim yang empuk dan interaktif */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 5px 0 #2E7D32;
+            transition: 0.1s;
+        }
+
+        /* Efek saat tombol ditekan */
+        button:active {
+            box-shadow: 0 2px 0 #2E7D32;
+            transform: translateY(3px);
+        }
+
+        button:hover {
+            background-color: #43A047;
+        }
+
+        /* Pembatas dekoratif */
+        hr {
+            border: 0;
+            height: 3px;
+            background: #C8E6C9;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+
+        /* Area tempat munculnya hasil diskusi */
+        .discussion-title {
+            font-size: 22px;
+            color: #388E3C;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #discussionSpace {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* Kotak pesan siswa yang berhasil dikirim */
+        .bubble-chat {
+            background-color: #F1F8E9;
+            border-left: 6px solid #81C784;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            animation: popUp 0.4s ease-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Nama siswa di dalam kotak pesan */
+        .bubble-name {
+            font-weight: bold;
+            color: #2E7D32;
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Isi pesan siswa */
+        .bubble-text {
+            color: #424242;
+            font-size: 15px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        /* Animasi muncul gelembung chat */
+        @keyframes popUp {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🌱 Pojok Diskusi Kelas 🌱</h2>
+    
+    <!-- Form Diskusi -->
+    <form id="discussionForm" onsubmit="tambahDiskusi(event)">
+        <div class="form-group">
+            <label for="studentName">👤 Nama:</label>
+            <input type="text" id="studentName" placeholder="Tulis nama panggilanmu di sini..." required autocomplete="off">
+        </div>
+        
+        <div class="form-group">
+            <label for="discussionContent">💬 Form Diskusi</label>
+            <textarea id="discussionContent" rows="4" placeholder="Yuk, bagikan ceritamu atau jawabanmu di sini..." required autocomplete="off"></textarea>
+        </div>
+        
+        <button type="submit">🚀 Kirim ke Papan Diskusi</button>
+    </form>
+
+    <hr>
+
+    <!-- Tempat Menampilkan Hasil -->
+    <div class="discussion-title">📌 Papan Diskusi Kita:</div>
+    <div id="discussionSpace">
+        <!-- Pesan dari siswa akan muncul di dalam sini -->
+    </div>
+</div>
+
+<script>
+    function tambahDiskusi(event) {
+        // Mencegah halaman reload saat form dikirim
+        event.preventDefault();
+
+        // Mengambil data dari input HTML
+        const namaInput = document.getElementById('studentName');
+        const ceritaInput = document.getElementById('discussionContent');
+        const ruangDiskusi = document.getElementById('discussionSpace');
+
+        // Membuat elemen kotak diskusi baru (Bubble Chat)
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble-chat';
+
+        // Membuat bagian Nama dengan tambahan emoji daun lucu
+        const nameElement = document.createElement('div');
+        nameElement.className = 'bubble-name';
+        nameElement.innerHTML = `🍃 <span>${escapeHTML(namaInput.value)}</span> :`;
+
+        // Membuat bagian isi cerita/pendapat
+        const textElement = document.createElement('div');
+        textElement.className = 'bubble-text';
+        textElement.textContent = ceritaInput.value;
+
+        // Menggabungkan nama dan teks ke dalam kotak gelembung
+        bubble.appendChild(nameElement);
+        bubble.appendChild(textElement);
+
+        // Menambahkan kotak baru tersebut ke paling atas papan diskusi
+        ruangDiskusi.insertBefore(bubble, ruangDiskusi.firstChild);
+
+        // Mengosongkan kembali form agar bisa diisi ulang
+        namaInput.value = '';
+        ceritaInput.value = '';
+    }
+
+    // Fungsi pengaman sederhana agar anak-anak tidak memasukkan kode aneh (XSS)
+    function escapeHTML(text) {
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+</script>
+
+</body>
+</html>
